@@ -47,7 +47,7 @@ export default function WalkthroughSlider({
   return (
     <div className="walkthrough">
       <div className="walkthrough__animation">
-        <LottieAnimation className="walkthrough__orb" />
+        {/* <LottieAnimation className="walkthrough__orb" /> */}
       </div>
 
       <Swiper

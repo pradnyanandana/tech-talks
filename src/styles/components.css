@@ -286,10 +286,13 @@
 
 /* Shape Animation Styles */
 .shape-animation {
-    position: relative;
     padding-top: 9.5rem;
     padding-bottom: 2.3333333333rem;
     background: radial-gradient(94.55% 94.55% at 50% 5.45%, #222737 0%, #0c0d10 100%);
+}
+
+.shape-animation .container {
+    position: relative;
 }
 
 .shape-animation img {
@@ -306,27 +309,27 @@
 }
 
 .shape-animation-text:nth-child(odd) {
-    right: 1.66667rem;
+    right: var(--spacing-md);
 }
 
 .shape-animation-text:nth-child(2) {
-    top: 10.9166666667rem;
+    top: 1.4166666667rem;
 }
 
 .shape-animation-text:nth-child(3) {
-    top: 14.3333333333rem;
+    top: 4.8333333333rem;
 }
 
 .shape-animation-text:nth-child(4) {
-    top: 19.4166666667rem;
+    top: 9.9166666667rem;
 }
 
 .shape-animation-text:nth-child(5) {
-    top: 24.75rem;
+    top: 15.25rem;
 }
 
 .shape-animation-text:nth-child(6) {
-    top: 30rem;
+    top: 20.5rem;
     max-width: 20rem;
 }
 
@@ -589,6 +592,10 @@
 
     .homepage__title {
         font-size: var(--font-size-3xl);
+    }
+
+    .shape-animation-text:nth-child(odd) {
+        right: var(--spacing-lg);
     }
 
     .walkthrough__title {
