@@ -15,6 +15,7 @@ body {
     background-color: var(--color-background);
     color: var(--color-text-primary);
     line-height: var(--line-height-normal);
+    letter-spacing: 0.02em;
 }
 
 body {
@@ -38,6 +39,10 @@ textarea,
 select {
     font-family: inherit;
     font-size: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading);
 }
 
 /* Accessibility */
