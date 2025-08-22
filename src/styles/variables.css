@@ -5,6 +5,7 @@
     --color-background: #0c0d10;
     --color-text-primary: #fafafa;
     --color-primary: #b488f2;
+    --color-dark-heading: #0c0d10;
 
     /* Spacing */
     --spacing-md: 1.66666667rem;
@@ -28,7 +29,7 @@
     --font-size-xl: 1.25rem;
     --font-size-2xl: 1.5rem;
     --font-size-3xl: 2rem;
-    --font-size-4xl: 2.5rem;
+    --font-size-4xl: 2.3611111111rem;
 
     --font-weight-normal: 400;
     --font-weight-medium: 500;

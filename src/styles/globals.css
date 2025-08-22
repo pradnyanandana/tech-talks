@@ -42,8 +42,31 @@ select {
     font-size: inherit;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-family-heading);
+}
+
+h2 {
+    font-size: var(--font-size-4xl);
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+h2 span {
+    background: linear-gradient(90deg, #fabbff 0%, #e49dff 15%, #b179ff 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: inline-block;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
 
 /* Accessibility */
