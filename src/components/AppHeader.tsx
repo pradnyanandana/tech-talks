@@ -1,6 +1,6 @@
 "use client";
 
-import { IconLogo } from "@/lib/icons";
+import { IconArrowLeft, IconLogo, IconReset } from "@/lib/icons";
 
 const AppHeader = () => {
   return (
@@ -8,7 +8,7 @@ const AppHeader = () => {
       <div className="container">
         <div className="header-content">
           <button className="back-button svg-button" aria-label="Back">
-            <span></span>
+            <IconArrowLeft />
           </button>
 
           <div className="logo">
@@ -16,7 +16,7 @@ const AppHeader = () => {
           </div>
 
           <button className="reset-button svg-button" aria-label="Reset">
-            <span></span>
+            <IconReset />
           </button>
         </div>
       </div>

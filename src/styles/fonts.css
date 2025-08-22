@@ -1,0 +1,121 @@
+/* =====================
+   SOHNE (BODY)
+   ===================== */
+@font-face {
+    font-family: "Sohne";
+    src: url("../../public/fonts/Sohne (Body)/Sohne-Extraleicht.otf") format("opentype");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Sohne";
+    src: url("../../public/fonts/Sohne (Body)/Sohne-ExtraleichtKursiv.otf") format("opentype");
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Sohne";
+    src: url("../../public/fonts/Sohne (Body)/Sohne-LeichtKursiv.otf") format("opentype");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Sohne";
+    src: url("../../public/fonts/Sohne (Body)/Sohne-Buch.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Sohne";
+    src: url("../../public/fonts/Sohne (Body)/Sohne-BuchKursiv.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Sohne";
+    src: url("../../public/fonts/Sohne (Body)/Sohne-Dreiviertelfett.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Sohne";
+    src: url("../../public/fonts/Sohne (Body)/Sohne-Kraftig.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Sohne";
+    src: url("../../public/fonts/Sohne (Body)/Sohne-KraftigKursiv.otf") format("opentype");
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Sohne";
+    src: url("../../public/fonts/Sohne (Body)/Sohne-Extrafett.otf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Sohne";
+    src: url("../../public/fonts/Sohne (Body)/Sohne-ExtrafettKursiv.otf") format("opentype");
+    font-weight: 800;
+    font-style: italic;
+}
+
+/* =====================
+   GRAPHIK
+   ===================== */
+@font-face {
+    font-family: "Graphik";
+    src:
+        url("../../public/fonts/Graphik/Graphik-Medium.woff2") format("woff2"),
+        url("../../public/fonts/Graphik/Graphik-Medium.woff") format("woff"),
+        url("../../public/fonts/Graphik/Graphik-Medium.ttf") format("truetype"),
+        url("../../public/fonts/Graphik/Graphik-Medium.eot") format("embedded-opentype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* =====================
+   PP AGRANDIR
+   ===================== */
+@font-face {
+    font-family: "PPAgrandir";
+    src:
+        url("../../public/fonts/PP Agrandir/PPAgrandir-Regular.woff2") format("woff2"),
+        url("../../public/fonts/PP Agrandir/PPAgrandir-Regular.woff") format("woff"),
+        url("../../public/fonts/PP Agrandir/PPAgrandir-Regular.ttf") format("truetype"),
+        url("../../public/fonts/PP Agrandir/PPAgrandir-Regular.eot") format("embedded-opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "PPAgrandir";
+    src:
+        url("../../public/fonts/PP Agrandir/PPAgrandir-Medium.woff2") format("woff2"),
+        url("../../public/fonts/PP Agrandir/PPAgrandir-Medium.woff") format("woff"),
+        url("../../public/fonts/PP Agrandir/PPAgrandir-Medium.ttf") format("truetype"),
+        url("../../public/fonts/PP Agrandir/PPAgrandir-Medium.eot") format("embedded-opentype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* =====================
+   BAGOSS
+   ===================== */
+@font-face {
+    font-family: "Bagoss";
+    src: url("../../public/fonts/Bagoss/BagossTRIALVF.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
