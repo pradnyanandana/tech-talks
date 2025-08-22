@@ -302,6 +302,7 @@
     position: absolute;
     top: 0;
     max-width: calc(100% - 3.33333334rem);
+    text-align: left;
 }
 
 .shape-animation-text:nth-child(odd) {

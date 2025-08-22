@@ -16,6 +16,7 @@ body {
     color: var(--color-text-primary);
     line-height: var(--line-height-normal);
     letter-spacing: 0.02em;
+    text-align: center;
 }
 
 body {

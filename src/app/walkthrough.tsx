@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import Layout from '@/components/ui/Layout';
+// import Layout from '@/components/ui/Layout';
 import WalkthroughSlider from '@/components/WalkthroughSlider';
 
 export default function Walkthrough() {
@@ -10,12 +10,12 @@ export default function Walkthrough() {
   };
 
   return (
-    <Layout title="Juicebox - Walkthrough" showHeader={true}>
+    // <Layout title="Juicebox - Walkthrough" showHeader={true}>
       <div className="walkthrough-page">
         <div className="container">
           <WalkthroughSlider onGetStarted={handleGetStarted} />
         </div>
       </div>
-    </Layout>
+    // </Layout>
   );
 }

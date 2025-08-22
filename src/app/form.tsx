@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import Layout from "@/components/ui/Layout";
 import MultiStepForm from "@/components/MultiStepForm";
 import { FormData } from "@/types";
 
@@ -13,12 +12,10 @@ export default function Form() {
   };
 
   return (
-    <Layout title="Juicebox - Form" showHeader={true}>
-      <div className="form-page">
-        <div className="container">
-          <MultiStepForm onSubmit={handleFormSubmit} />
-        </div>
+    <div className="form-page">
+      <div className="container">
+        <MultiStepForm onSubmit={handleFormSubmit} />
       </div>
-    </Layout>
+    </div>
   );
 }
