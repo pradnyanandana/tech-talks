@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useNavigation } from "@/context/NavigationContext";
+import { useApp } from "@/context/AppContext";
 import { IconArrowLeft, IconLogo, IconReset } from "@/lib/icons";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
@@ -18,7 +18,8 @@ const AppHeader = () => {
   const isHomePage = pathname === "/";
   const headerRef = useRef<HTMLElement>(null);
   const wasScrolled = useRef(false);
-  const { currentSlide, setCurrentSlide } = useNavigation();
+  const { currentSlide, setCurrentSlide, formStep, setFormStep, setFormData } =
+    useApp();
 
   useLayoutEffect(() => {
     const updateHeader = () => {
@@ -54,13 +55,29 @@ const AppHeader = () => {
       return;
     }
 
+    if (pathname === "/form") {
+      if (formStep > 0) {
+        setFormStep(formStep - 1);
+      } else {
+        setCurrentSlide?.(2);
+        router.push("/walkthrough");
+      }
+      return;
+    }
+
     const previousPath = PATH_MAPPING[pathname as keyof typeof PATH_MAPPING];
     router.push(previousPath || "/");
   };
 
   const handleReset = () => {
     router.push("/");
-    setCurrentSlide?.(0);
+
+    // Execute state updates after navigation
+    setTimeout(() => {
+      setCurrentSlide?.(0);
+      setFormStep(0);
+      setFormData?.({ firstName: "", email: "" });
+    }, 100);
   };
 
   return (

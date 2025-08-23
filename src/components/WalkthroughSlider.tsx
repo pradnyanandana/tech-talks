@@ -7,7 +7,7 @@ import type { Swiper as SwiperClass } from "swiper";
 import { Pagination } from "swiper/modules";
 import { WalkthroughSlide } from "@/types/components";
 import AppNavigation from "./AppNavigation";
-import { useNavigation } from "@/context/NavigationContext";
+import { useApp } from "@/context/AppContext";
 
 // Import Swiper styles
 import "swiper/css";
@@ -114,7 +114,7 @@ const SlideContent = ({
 );
 
 const WalkthroughSlider = () => {
-  const { currentSlide: contextSlide, setCurrentSlide } = useNavigation();
+  const { currentSlide: contextSlide, setCurrentSlide } = useApp();
   const router = useRouter();
   const [currentSlide, setCurrentSlideState] = useState(0);
   const swiperRef = useRef<SwiperClass | null>(null);
@@ -136,6 +136,7 @@ const WalkthroughSlider = () => {
   };
 
   const handleGetStarted = () => {
+    setCurrentSlide?.(0); // Reset slide position when leaving
     router.push("/form");
   };
 
@@ -203,7 +204,7 @@ const WalkthroughSlider = () => {
       <AppNavigation
         title={isLastSlide ? "Get started" : "Continue"}
         onClick={isLastSlide ? handleGetStarted : handleNext}
-        variant={isLastSlide ? "primary" : "secondary"}
+        variant={isLastSlide ? "secondary" : "outlined"}
       />
     </>
   );

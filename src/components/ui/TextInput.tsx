@@ -1,73 +1,91 @@
+import { IconArrowUp } from "@/lib/icons";
 import { TextInputProps } from "@/types/components";
+import { useState, useEffect } from "react";
 
-const InputLabel = ({
-  id,
-  label,
-  required,
-}: {
-  id: string;
-  label: string;
-  required: boolean;
-}) => (
-  <label htmlFor={id} className="text-input__label">
-    {label}
-    {required && (
-      <span className="text-input__required" aria-label="required">
-        *
-      </span>
-    )}
-  </label>
-);
+type ValidationType = "text" | "email";
 
-const ErrorMessage = ({ id, error }: { id: string; error: string }) => (
-  <div id={`${id}-error`} className="text-input__error" role="alert">
-    {error}
-  </div>
-);
+const validateInput = (
+  value: string,
+  type: ValidationType
+): string | undefined => {
+  if (!value.trim()) {
+    return "This field is required";
+  }
+  if (type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+    return "Please enter a valid email address";
+  }
+  return undefined;
+};
 
 const generateInputClasses = (error?: string, className = "") => {
-  return [
-    "text-input__field",
-    error && "text-input__field--error",
-    className,
-  ]
+  return ["text-input__field", error && "text-input__field--error", className]
     .filter(Boolean)
     .join(" ");
 };
 
 const TextInput = ({
   id,
-  label,
-  type = "text",
-  value,
-  onChange,
-  error,
+  type = "text" as ValidationType,
+  onSubmit,
   placeholder,
   required = false,
   disabled = false,
   className = "",
-}: TextInputProps) => {
+  defaultValue
+}: TextInputProps & { type?: ValidationType }) => {
+  const [value, setValue] = useState(defaultValue || "");
+  const [error, setError] = useState<string>();
   const inputClasses = generateInputClasses(error, className);
 
+  const validate = () => {
+    const errorMessage = validateInput(value, type);
+    setError(errorMessage);
+    return !errorMessage;
+  };
+
+  const handleSubmit = () => {
+    if (validate()) {
+      onSubmit(value);
+      setValue("");
+    }
+  };
+
+  // Add effect to update value when defaultValue changes
+  useEffect(() => {
+    setValue(defaultValue || "");
+  }, [defaultValue]);
+
   return (
-    <div className="text-input">
-      <InputLabel id={id} label={label} required={required} />
-
-      <input
-        id={id}
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
-        required={required}
-        disabled={disabled}
-        className={inputClasses}
-        aria-invalid={!!error}
-        aria-describedby={error ? `${id}-error` : undefined}
-      />
-
-      {error && <ErrorMessage id={id} error={error} />}
-    </div>
+    <>
+      {error && <div className="text-input__error">{error}</div>}
+      <div className="text-input">
+        <input
+          id={id}
+          type={type}
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+            if (error) validate();
+          }}
+          placeholder={placeholder}
+          required={required}
+          disabled={disabled}
+          className={inputClasses}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${id}-error` : undefined}
+        />
+        <button
+          className={`submit-button svg-button ${
+            !error && value.trim() ? "active" : ""
+          }`}
+          aria-label="Submit"
+          onClick={handleSubmit}
+          type="button"
+        >
+          <IconArrowUp />
+        </button>
+      </div>
+    </>
   );
 };
 

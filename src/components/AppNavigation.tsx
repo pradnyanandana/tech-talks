@@ -8,14 +8,14 @@ interface AppNavigationProps {
   path?: string;
   title?: string;
   onClick?: () => void;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "outlined";
 }
 
-const AppNavigation: FC<AppNavigationProps> = ({ 
-  path = "/", 
+const AppNavigation: FC<AppNavigationProps> = ({
+  path = "/",
   title = "Get a reality check",
   onClick,
-  variant = "primary"
+  variant = "primary",
 }) => {
   const router = useRouter();
 

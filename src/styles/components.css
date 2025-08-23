@@ -82,8 +82,16 @@
     letter-spacing: 0.01em;
 }
 
+.typography__regular {
+    font-size: var(--font-size-2xl);
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
 /* Button Component */
 .button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -97,6 +105,9 @@
     outline: none;
     text-decoration: none;
     user-select: none;
+    padding: 1.5833333333rem;
+    font-size: 1.3580246914rem;
+    min-height: 5rem;
 }
 
 .button:disabled,
@@ -111,19 +122,33 @@
     background: var(--color-primary);
     color: var(--color-dark-heading);
     border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-md);
 }
 
-.button--primary:hover:not(:disabled) {
-    /* transform: translateY(-2px); */
-    box-shadow: var(--shadow-lg);
-}
-
-.button--secondary {
-    background: var(--color-surface);
+.button--outlined {
+    background: transparent;
     color: var(--color-text-primary);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-md);
+}
+
+.button--secondary {
+    background: var(--color-text-primary);
+    color: var(--color-dark-heading);
+    border: 1px solid var(--color-text-primary);
+    border-radius: var(--border-radius-md);
+}
+
+.button--secondary::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 1.3333333333rem);
+    height: calc(100% + 1.3333333333rem);
+    background: #ffffff1a;
+    border-radius: 2.25rem;
+    z-index: -1;
 }
 
 .button--ghost {
@@ -136,24 +161,6 @@
 }
 
 /* Button Sizes */
-.button--sm {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-sm);
-    min-height: 36px;
-}
-
-.button--md {
-    padding: 1.5833333333rem;
-    font-size: 1.3580246914rem;
-    min-height: 5rem;
-}
-
-.button--lg {
-    padding: var(--spacing-lg) var(--spacing-xl);
-    font-size: var(--font-size-lg);
-    min-height: 52px;
-}
-
 .button--full-width {
     width: 100%;
 }
@@ -179,7 +186,7 @@
 
 /* Text Input Component */
 .text-input {
-    margin-bottom: var(--spacing-md);
+    position: relative;
 }
 
 .text-input__label {
@@ -192,22 +199,30 @@
 
 .text-input__required {
     color: var(--color-error);
-    margin-left: var(--spacing-xs);
+    border-color: var(--color-error);
 }
 
 .text-input__field {
     width: 100%;
-    padding: var(--spacing-md);
-    font-size: var(--font-size-base);
-    background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-lg);
+    border-radius: var(--border-radius-md);
     color: var(--color-text-primary);
-    transition: all var(--transition-normal);
+    background: transparent;
+    min-height: 5rem;
+    font-size: var(--font-size-xl);
+    line-height: 1.35;
+    letter-spacing: 0.02;
+    padding: 1.5833333333rem 4.5833333333rem 1.5833333333rem 1.08333333333rem;
+}
+
+.text-input__field:focus {
+    border-color: var(--color-border);
+    box-shadow: none;
+    outline: none;
 }
 
 .text-input__field::placeholder {
-    color: var(--color-text-muted);
+    color: var(--color-border);
 }
 
 .text-input__field:focus {
@@ -224,9 +239,32 @@
 }
 
 .text-input__error {
-    margin-top: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
     font-size: var(--font-size-sm);
     color: var(--color-error);
+}
+
+.text-input .submit-button {
+    position: absolute;
+    top: 50%;
+    right: 1.08333333333rem;
+    transform: translateY(-50%);
+    padding: 0.541666666667rem;
+    opacity: 0.5;
+    color: var(--color-dots);
+    background: var(--color-border);
+    cursor: not-allowed;
+}
+
+.text-input .submit-button.active {
+    opacity: 1;
+    cursor: pointer;
+    color: var(--color-dark-heading);
+    background: var(--color-text-primary);
+}
+
+.text-input .submit-button svg {
+    width: 1.5rem;
 }
 
 /* Lottie Animation Component */
@@ -255,15 +293,23 @@
 .shape-animation.__walkthrough {
     padding-top: 11.1666666667rem;
     padding-bottom: 7.3333333333rem;
-    background: radial-gradient(94.55% 94.55% at 50% 5.45%, #222737 0%, #0c0d10 100%);
 }
 
 .shape-animation.__walkthrough.__slide_1 {
     background: radial-gradient(51.9% 51.9% at 50% 48.1%, #222737 0%, #0c0d10 100%);
 }
 
+.shape-animation.__form,
+.shape-animation.__result {
+    padding-top: 9.1666666667rem;
+}
+
 .shape-animation > .container {
     padding-bottom: 6.4166666667rem;
+}
+
+.shape-animation.__form > .container {
+    padding-bottom: 2rem;
 }
 
 .shape-animation .container {
@@ -347,105 +393,21 @@
         opacity 0.3s ease;
     opacity: 0.25;
     background-color: var(--color-dots);
+}
 
-    &.active {
-        opacity: 1;
-        background-color: var(--color-primary);
-    }
+.walkthrough__dot.active {
+    opacity: 1;
+    background-color: var(--color-primary);
 }
 
 /* Form Styles */
-.form-page {
-    min-height: calc(100vh - 80px);
-    display: flex;
-    align-items: center;
-    padding: var(--spacing-xl) 0;
-}
-
-.multistep-form {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.multistep-form__progress {
-    width: 100%;
-    height: 4px;
-    background: var(--color-border);
-    border-radius: var(--border-radius-full);
-    margin-bottom: var(--spacing-2xl);
-    overflow: hidden;
-}
-
-.multistep-form__progress-bar {
-    height: 100%;
-    background: var(--color-primary);
-    border-radius: var(--border-radius-full);
-    transition: width var(--transition-normal);
-}
-
-.multistep-form__step {
-    margin-bottom: var(--spacing-2xl);
-}
-
-.multistep-form__title {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--line-height-tight);
-    color: var(--color-text-primary);
-    margin-bottom: var(--spacing-2xl);
-    text-align: center;
-}
-
-.multistep-form__field {
-    margin-bottom: var(--spacing-2xl);
-}
-
-.multistep-form__field .text-input__field {
-    font-size: var(--font-size-lg);
-    padding: var(--spacing-lg);
-    text-align: center;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid var(--color-border);
-    border-radius: 0;
-}
-
-.multistep-form__field .text-input__field:focus {
-    border-bottom-color: var(--color-primary);
-    box-shadow: none;
-}
-
-.multistep-form__actions {
-    display: flex;
-    gap: var(--spacing-md);
-    align-items: center;
-    justify-content: center;
-}
-
-.multistep-form__back {
-    flex: 0 0 auto;
-}
-
-.multistep-form__continue {
-    flex: 1;
-}
-
-.multistep-form__step-indicator {
-    text-align: center;
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    margin-top: var(--spacing-xl);
+.form-page .lottie-animation .lottie-animation__player,
+.results-page .lottie-animation .lottie-animation__player {
+    width: 2.75rem;
+    margin-bottom: 2.6666666667rem;
 }
 
 /* Results Styles */
-.results-page {
-    min-height: calc(100vh - 80px);
-    display: flex;
-    align-items: center;
-    padding: var(--spacing-xl) 0;
-}
-
 .results {
     text-align: center;
     width: 100%;
@@ -532,10 +494,6 @@
         padding: 0 var(--spacing-lg);
     }
 
-    .homepage__title {
-        font-size: var(--font-size-3xl);
-    }
-
     .shape-animation-text:nth-child(odd) {
         right: var(--spacing-lg);
     }
@@ -546,32 +504,6 @@
 
     .content {
         margin-top: 2rem;
-    }
-
-    .walkthrough__title {
-        font-size: var(--font-size-2xl);
-    }
-
-    .multistep-form__title {
-        font-size: var(--font-size-2xl);
-    }
-
-    .results__title {
-        font-size: var(--font-size-3xl);
-    }
-
-    .multistep-form__actions {
-        flex-direction: row;
-    }
-
-    .results__actions {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .results__continue {
-        margin-bottom: 0;
-        margin-right: var(--spacing-md);
     }
 }
 
@@ -608,4 +540,18 @@
     .lottie-animation__player {
         animation: none !important;
     }
+}
+
+.submit-button {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.submit-button.active {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.submit-button:not(.active) {
+    pointer-events: none;
 }

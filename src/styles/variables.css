@@ -8,6 +8,7 @@
     --color-dark-heading: #0c0d10;
     --color-border: #ffffff99;
     --color-dots: #ffffff;
+    --color-error: #ef4444;
 
     /* Spacing */
     --spacing-md: 1.66666667rem;
@@ -28,8 +29,8 @@
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
     --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
+    --font-size-xl: 1.3580246914rem;
+    --font-size-2xl: 1.5833333333rem;
     --font-size-3xl: 1.8333333333rem;
     --font-size-4xl: 2.3333333333rem;
 

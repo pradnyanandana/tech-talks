@@ -1,14 +1,11 @@
 "use client";
 
-import ShapeAnimation from '@/components/ShapeAnimation';
+import ResultMessage from "@/components/ResultMessage";
 
 const ResultsPage = () => {
   return (
     <div className="results-page">
-      <div className="container">
-        <ShapeAnimation type="result" />
-        {/* Add other results content here */}
-      </div>
+      <ResultMessage />
     </div>
   );
 };
