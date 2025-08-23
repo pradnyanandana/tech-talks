@@ -2,8 +2,8 @@
 
 import { useApp } from "@/context/AppContext";
 import { FormData } from "@/types";
-import TextInput from "./ui/TextInput";
-import ShapeAnimation from "./ShapeAnimation";
+import TextInput from "@/components/ui/TextInput";
+import ShapeAnimation from "@/components/features/ShapeAnimation";
 import { useRouter } from "next/navigation";
 
 const FORM_STEPS = [

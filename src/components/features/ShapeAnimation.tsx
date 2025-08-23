@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { FC } from "react";
-import LottieAnimation from "./LottieAnimation";
+import LottieAnimation from "@/components/LottieAnimation";
 import { hexagonalShape } from "@/lib/lottie";
 
 type AnimationType = "homepage" | "result" | "walkthrough";

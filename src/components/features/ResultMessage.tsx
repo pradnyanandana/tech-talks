@@ -1,10 +1,10 @@
 "use client";
 
 import { useApp } from "@/context/AppContext";
-import ShapeAnimation from "./ShapeAnimation";
+import ShapeAnimation from "@/components/features/ShapeAnimation";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import AppNavigation from "./AppNavigation";
+import AppNavigation from "@/components/layout/AppNavigation";
 
 const ResultMessage = () => {
   const router = useRouter();

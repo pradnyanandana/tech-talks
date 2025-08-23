@@ -1,6 +1,6 @@
 "use client";
 
-import ResultMessage from "@/components/ResultMessage";
+import ResultMessage from "@/components/features/ResultMessage";
 
 const ResultsPage = () => {
   return (

@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import { defaultMetadata } from "@/lib/metadata";
-import AppHeader from "@/components/AppHeader";
-import GSAPProvider from "@/components/GSAPProvider";
+import AppHeader from "@/components/layout/AppHeader";
+import GSAPProvider from "@/components/providers/GSAPProvider";
 import { AppProvider } from "@/context/AppContext";
+import ScrollProvider from "@/components/providers/ScrollProvider";
 
 import "@/styles/globals.css";
 import "@/styles/components.css";
@@ -22,10 +23,12 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
       <body>
         <GSAPProvider>
           <AppProvider>
-            <div className="app">
-              <AppHeader />
-              <main className="main">{children}</main>
-            </div>
+            <ScrollProvider>
+              <div className="app">
+                <AppHeader />
+                <main className="main">{children}</main>
+              </div>
+            </ScrollProvider>
           </AppProvider>
         </GSAPProvider>
       </body>

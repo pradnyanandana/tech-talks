@@ -1,4 +1,4 @@
-import WalkthroughSlider from "@/components/WalkthroughSlider";
+import WalkthroughSlider from "@/components/features/WalkthroughSlider";
 
 const Walkthrough = () => {
   return (

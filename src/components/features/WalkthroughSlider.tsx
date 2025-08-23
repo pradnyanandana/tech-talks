@@ -6,14 +6,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper";
 import { Pagination } from "swiper/modules";
 import { WalkthroughSlide } from "@/types/components";
-import AppNavigation from "./AppNavigation";
+import AppNavigation from "@/components/layout/AppNavigation";
 import { useApp } from "@/context/AppContext";
+import { useRouter } from "next/navigation";
+import ShapeAnimation from "@/components/features/ShapeAnimation";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import { useRouter } from "next/navigation";
-import ShapeAnimation from "./ShapeAnimation";
 
 const WALKTHROUGH_SLIDES: WalkthroughSlide[] = [
   {

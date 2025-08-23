@@ -1,5 +1,5 @@
-import AppNavigation from "@/components/AppNavigation";
-import ShapeAnimation from "@/components/ShapeAnimation";
+import AppNavigation from "@/components/layout/AppNavigation";
+import ShapeAnimation from "@/components/features/ShapeAnimation";
 
 const HOMEPAGE_TEXTS = [
   "WA businesses feel confident about future growth",

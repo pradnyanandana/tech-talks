@@ -285,31 +285,13 @@
 
 /* Shape Animation Styles */
 .shape-animation {
-    padding-top: 9.5rem;
-    padding-bottom: 4rem;
+    --padding-top-default: 9.5rem;
+    --padding-bottom-default: 4rem;
+    --img-margin-bottom: 3.3333333333rem;
+    
+    padding-top: var(--padding-top-default);
+    padding-bottom: var(--padding-bottom-default);
     background: radial-gradient(94.55% 94.55% at 50% 5.45%, #222737 0%, #0c0d10 100%);
-}
-
-.shape-animation.__walkthrough {
-    padding-top: 11.1666666667rem;
-    padding-bottom: 7.3333333333rem;
-}
-
-.shape-animation.__walkthrough.__slide_1 {
-    background: radial-gradient(51.9% 51.9% at 50% 48.1%, #222737 0%, #0c0d10 100%);
-}
-
-.shape-animation.__form,
-.shape-animation.__result {
-    padding-top: 9.1666666667rem;
-}
-
-.shape-animation > .container {
-    padding-bottom: 6.4166666667rem;
-}
-
-.shape-animation.__form > .container {
-    padding-bottom: 2rem;
 }
 
 .shape-animation .container {
@@ -319,9 +301,32 @@
 .shape-animation img {
     display: block;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0 auto var(--img-margin-bottom);
 }
 
+/* Variations */
+.shape-animation.__walkthrough {
+    --padding-top: 11.1666666667rem;
+    --padding-bottom: 12.5rem;
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+}
+
+.shape-animation.__walkthrough.__slide_1 {
+    background: radial-gradient(51.9% 51.9% at 50% 48.1%, #222737 0%, #0c0d10 100%);
+}
+
+.shape-animation.__form,
+.shape-animation.__result {
+    padding-top: 9.1666666667rem;
+    padding-bottom: 10.3333333333rem;
+}
+
+.shape-animation.__form > .container {
+    padding-bottom: 2rem;
+}
+
+/* Text positioning */
 .shape-animation-text {
     position: absolute;
     top: 0;
@@ -329,27 +334,12 @@
     text-align: left;
 }
 
-.shape-animation-text:nth-child(odd) {
-    right: var(--spacing-md);
-}
-
-.shape-animation-text:nth-child(2) {
-    top: 1.4166666667rem;
-}
-
-.shape-animation-text:nth-child(3) {
-    top: 4.8333333333rem;
-}
-
-.shape-animation-text:nth-child(4) {
-    top: 9.9166666667rem;
-}
-
-.shape-animation-text:nth-child(5) {
-    top: 15.25rem;
-}
-
-.shape-animation-text:nth-child(6) {
+.shape-animation-text:nth-child(odd) { right: var(--spacing-md); }
+.shape-animation-text:nth-child(2) { top: 1.4166666667rem; }
+.shape-animation-text:nth-child(3) { top: 4.8333333333rem; }
+.shape-animation-text:nth-child(4) { top: 9.9166666667rem; }
+.shape-animation-text:nth-child(5) { top: 15.25rem; }
+.shape-animation-text:nth-child(6) { 
     top: 20.5rem;
     max-width: 20rem;
 }
@@ -367,6 +357,7 @@
     width: 100%;
     padding: 1.6666666667rem 0;
     background: var(--color-background);
+    z-index: var(--z-index-fixed);
 }
 
 /* Walkthrough */
@@ -376,6 +367,7 @@
     background: var(--color-background);
     width: 100%;
     padding: 1.1666666667rem 0;
+    z-index: var(--z-index-fixed);
 }
 
 .walkthrough__navigation-dots {
