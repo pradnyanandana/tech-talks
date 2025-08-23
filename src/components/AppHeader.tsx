@@ -35,7 +35,7 @@ const AppHeader = () => {
     };
 
     window.addEventListener("scroll", updateHeader);
-    updateHeader(); // Initial state
+    updateHeader();
 
     return () => window.removeEventListener("scroll", updateHeader);
   }, []);

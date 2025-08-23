@@ -101,7 +101,7 @@ const MultiStepForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) => 
             label=""
             type={currentStepData.type}
             value={formData[fieldName]}
-            onChange={(value) => handleInputChange(fieldName, value)}
+            onChange={(value: string) => handleInputChange(fieldName, value)}
             placeholder={currentStepData.placeholder}
             error={errors[fieldName]}
             required

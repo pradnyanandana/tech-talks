@@ -1,4 +1,4 @@
-import { TextInputProps } from "@/types";
+import { TextInputProps } from "@/types/components";
 
 const InputLabel = ({
   id,
