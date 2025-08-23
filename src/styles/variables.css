@@ -6,6 +6,8 @@
     --color-text-primary: #fafafa;
     --color-primary: #b488f2;
     --color-dark-heading: #0c0d10;
+    --color-border: #ffffff99;
+    --color-dots: #ffffff;
 
     /* Spacing */
     --spacing-md: 1.66666667rem;
@@ -28,8 +30,8 @@
     --font-size-lg: 1.125rem;
     --font-size-xl: 1.25rem;
     --font-size-2xl: 1.5rem;
-    --font-size-3xl: 2rem;
-    --font-size-4xl: 2.3611111111rem;
+    --font-size-3xl: 1.8333333333rem;
+    --font-size-4xl: 2.3333333333rem;
 
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -41,7 +43,7 @@
     --line-height-relaxed: 1.5;
 
     /* Border Radius */
-    --border-radius-md: 0.833333335rem;
+    --border-radius-md: 1.5833333333rem;
     --border-radius-sm: calc(var(--border-radius-md) * 0.5); /* ≈ 0.4167rem */
     --border-radius-lg: calc(var(--border-radius-md) * 1.5); /* ≈ 1.25rem */
     --border-radius-xl: calc(var(--border-radius-md) * 2); /* ≈ 1.6667rem */

@@ -25,10 +25,10 @@ const Home = () => {
 
       <section className="content">
         <div className="container">
-          <h2>
+          <h1 className="typography__h2">
             Compare your thoughts on <span>technology</span> with current
             industry opinions.
-          </h2>
+          </h1>
         </div>
       </section>
 

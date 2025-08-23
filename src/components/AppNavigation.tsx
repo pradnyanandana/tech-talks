@@ -5,17 +5,33 @@ import Button from "./ui/Button";
 import { useRouter } from "next/navigation";
 
 interface AppNavigationProps {
-  path: string;
+  path?: string;
+  title?: string;
+  onClick?: () => void;
+  variant?: "primary" | "secondary" | "ghost";
 }
 
-const AppNavigation: FC<AppNavigationProps> = ({ path = "/" }) => {
+const AppNavigation: FC<AppNavigationProps> = ({ 
+  path = "/", 
+  title = "Get a reality check",
+  onClick,
+  variant = "primary"
+}) => {
   const router = useRouter();
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      router.push(path);
+    }
+  };
 
   return (
     <section className="navigation">
       <div className="container">
-        <Button fullWidth onClick={() => router.push(path)}>
-          Get a reality check
+        <Button fullWidth onClick={handleClick} variant={variant}>
+          {title}
         </Button>
       </div>
     </section>

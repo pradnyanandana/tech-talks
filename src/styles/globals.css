@@ -51,14 +51,12 @@ h6 {
     font-family: var(--font-family-heading);
 }
 
-h2 {
-    font-size: var(--font-size-4xl);
-    line-height: 1.2;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-}
-
-h2 span {
+h1 span:not(.char),
+h2 span:not(.char),
+h3 span:not(.char),
+h4 span:not(.char),
+h5 span:not(.char),
+h6 span:not(.char) {
     background: linear-gradient(90deg, #fabbff 0%, #e49dff 15%, #b179ff 95%);
     -webkit-background-clip: text;
     background-clip: text;

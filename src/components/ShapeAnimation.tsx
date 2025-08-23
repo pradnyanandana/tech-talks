@@ -5,7 +5,7 @@ import { FC } from "react";
 import LottieAnimation from "./LottieAnimation";
 import { hexagonalShape } from "@/lib/lottie";
 
-type AnimationType = "homepage" | "result";
+type AnimationType = "homepage" | "result" | "walkthrough";
 
 interface ShapeAnimationProps {
   type?: AnimationType;

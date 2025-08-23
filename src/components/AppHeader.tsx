@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import { useNavigation } from "@/context/NavigationContext";
 import { IconArrowLeft, IconLogo, IconReset } from "@/lib/icons";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
@@ -17,6 +18,7 @@ const AppHeader = () => {
   const isHomePage = pathname === "/";
   const headerRef = useRef<HTMLElement>(null);
   const wasScrolled = useRef(false);
+  const { currentSlide, setCurrentSlide } = useNavigation();
 
   useLayoutEffect(() => {
     const updateHeader = () => {
@@ -26,7 +28,9 @@ const AppHeader = () => {
       if (wasScrolled.current !== isScrolled) {
         wasScrolled.current = isScrolled;
         gsap.to(headerRef.current, {
-          backgroundColor: isScrolled ? "var(--color-background)" : "transparent",
+          backgroundColor: isScrolled
+            ? "var(--color-background)"
+            : "transparent",
           boxShadow: isScrolled ? "0 2px 4px rgba(0,0,0,0.1)" : "none",
           duration: 0.3,
           ease: "power2.out",
@@ -41,8 +45,22 @@ const AppHeader = () => {
   }, []);
 
   const handleBack = () => {
+    if (pathname === "/walkthrough") {
+      if (currentSlide && currentSlide > 0 && setCurrentSlide) {
+        setCurrentSlide(currentSlide - 1);
+      } else {
+        router.push("/");
+      }
+      return;
+    }
+
     const previousPath = PATH_MAPPING[pathname as keyof typeof PATH_MAPPING];
     router.push(previousPath || "/");
+  };
+
+  const handleReset = () => {
+    router.push("/");
+    setCurrentSlide?.(0);
   };
 
   return (
@@ -68,7 +86,7 @@ const AppHeader = () => {
           <button
             className="reset-button svg-button"
             aria-label="Reset"
-            onClick={() => router.push("/")}
+            onClick={handleReset}
           >
             <IconReset />
           </button>

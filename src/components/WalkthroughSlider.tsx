@@ -1,145 +1,212 @@
+"use client";
+
 import { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper";
 import { Pagination } from "swiper/modules";
-import { WalkthroughSlide, WalkthroughSliderProps, SlideContentProps, AnimatedTitleProps } from "@/types/components";
-import Button from "./ui/Button";
-// import LottieAnimation from "./LottieAnimation";
+import { WalkthroughSlide } from "@/types/components";
+import AppNavigation from "./AppNavigation";
+import { useNavigation } from "@/context/NavigationContext";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import { useRouter } from "next/navigation";
+import ShapeAnimation from "./ShapeAnimation";
 
 const WALKTHROUGH_SLIDES: WalkthroughSlide[] = [
-	{
-		id: "1",
-		title:
-			"Professionals around the world shared how they feel about technology and I've listened. Now it's your turn.",
-	},
-	{
-		id: "2",
-		title:
-			"I'll ask you a handful of meaningful questions to understand your responses with people in your industry.",
-	},
-	{
-		id: "3",
-		title:
-			"You'll get insights into current industry sentiments and a quick check about technology in a few minutes. Deal? Great!",
-	},
+  {
+    id: "1",
+    title:
+      "Professionals around the world shared how they feel about technology and I've listened. Now it's your turn.",
+  },
+  {
+    id: "2",
+    title:
+      "I'll ask you a handful of meaningful questions to understand your responses with people in your industry.",
+  },
+  {
+    id: "3",
+    title:
+      "You'll get insights into current industry sentiments and a quick check about technology in a few minutes. Deal? Great!",
+  },
 ];
 
-const AnimatedTitle = ({ title }: { title: string }) => {
-	const titleRef = useRef<HTMLHeadingElement>(null);
+const BACKGROUND_POSITIONS = [
+  "51.9% 51.9% at 50% 48.1%",
+  "94.55% 94.55% at 50% 5.45%",
+  "94.55% 94.55% at 50% 5.45%",
+];
 
-	useEffect(() => {
-		if (!titleRef.current) return;
+const AnimatedTitle = ({
+  title,
+  currentSlide,
+}: {
+  title: string;
+  currentSlide: number;
+}) => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
-		const chars = titleRef.current.innerText.split("");
-		titleRef.current.innerHTML = chars
-			.map((char) => `<span class="char">${char}</span>`)
-			.join("");
+  useEffect(() => {
+    if (!titleRef.current) return;
 
-		gsap.fromTo(
-			titleRef.current.querySelectorAll(".char"),
-			{
-				opacity: 0,
-				y: 20,
-			},
-			{
-				opacity: 1,
-				y: 0,
-				duration: 0.5,
-				stagger: 0.02,
-				ease: "back.out(1.7)",
-			}
-		);
-	}, [title]);
+    const chars = titleRef.current.innerText.split("");
+    titleRef.current.innerHTML = chars
+      .map((char) => `<span class="char">${char}</span>`)
+      .join("");
 
-	return (
-		<h2 ref={titleRef} className="walkthrough__title">
-			{title}
-		</h2>
-	);
+    gsap.fromTo(
+      titleRef.current.querySelectorAll(".char"),
+      {
+        opacity: 0.5,
+      },
+      {
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.02,
+      }
+    );
+  }, [title, currentSlide]);
+
+  return (
+    <h2 ref={titleRef} className="walkthrough__title typography__h4">
+      {title}
+    </h2>
+  );
 };
 
-const SlideContent = ({
-	slide,
-	isLastSlide,
-	onNext,
-	onGetStarted,
+const NavigationDots = ({
+  total,
+  active,
 }: {
-	slide: WalkthroughSlide;
-	isLastSlide: boolean;
-	onNext: () => void;
-	onGetStarted: () => void;
+  total: number;
+  active: number;
 }) => (
-	<div className="walkthrough__content">
-		<AnimatedTitle title={slide.title} />
-		{isLastSlide ? (
-			<Button
-				onClick={onGetStarted}
-				variant="primary"
-				size="lg"
-				fullWidth
-				className="walkthrough__cta"
-			>
-				Get started
-			</Button>
-		) : (
-			<Button
-				onClick={onNext}
-				variant="secondary"
-				size="lg"
-				fullWidth
-				className="walkthrough__continue"
-			>
-				Continue
-			</Button>
-		)}
-	</div>
+  <div className="walkthrough__navigation-dots">
+    {Array.from({ length: total }).map((_, index) => (
+      <span
+        key={index}
+        className={`walkthrough__dot ${index === active ? "active" : ""}`}
+      />
+    ))}
+  </div>
 );
 
-const WalkthroughSlider = ({ onGetStarted }: { onGetStarted: () => void }) => {
-	const [currentSlide, setCurrentSlide] = useState(0);
-	const swiperRef = useRef<SwiperClass | null>(null);
+const SlideContent = ({
+  slide,
+  slideIndex,
+  currentSlide,
+}: {
+  slide: WalkthroughSlide;
+  slideIndex: number;
+  currentSlide: number;
+}) => (
+  <div className="container">
+    <div className="walkthrough__content">
+      <AnimatedTitle
+        key={slideIndex}
+        title={slide.title}
+        currentSlide={currentSlide}
+      />
+    </div>
+  </div>
+);
 
-	return (
-		<div className="walkthrough">
-			<div className="walkthrough__animation">
-				{/* <LottieAnimation className="walkthrough__orb" /> */}
-			</div>
+const WalkthroughSlider = () => {
+  const { currentSlide: contextSlide, setCurrentSlide } = useNavigation();
+  const router = useRouter();
+  const [currentSlide, setCurrentSlideState] = useState(0);
+  const swiperRef = useRef<SwiperClass | null>(null);
+  const isLastSlide = currentSlide === WALKTHROUGH_SLIDES.length - 1;
 
-			<Swiper
-				onSwiper={(swiper) => (swiperRef.current = swiper)}
-				modules={[Pagination]}
-				spaceBetween={30}
-				slidesPerView={1}
-				pagination={{
-					clickable: true,
-					bulletClass: "walkthrough__pagination-bullet",
-					bulletActiveClass: "walkthrough__pagination-bullet--active",
-				}}
-				onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex)}
-				className="walkthrough__swiper"
-			>
-				{WALKTHROUGH_SLIDES.map((slide, index) => (
-					<SwiperSlide key={slide.id} className="walkthrough__slide">
-						<SlideContent
-							slide={slide}
-							isLastSlide={index === WALKTHROUGH_SLIDES.length - 1}
-							onNext={() => swiperRef.current?.slideNext()}
-							onGetStarted={onGetStarted}
-						/>
-					</SwiperSlide>
-				))}
-			</Swiper>
+  // Add effect to listen to navigation context changes
+  useEffect(() => {
+    if (
+      contextSlide !== undefined &&
+      contextSlide !== currentSlide &&
+      swiperRef.current
+    ) {
+      swiperRef.current.slideTo(contextSlide);
+    }
+  }, [contextSlide, currentSlide]);
 
-			<p className="walkthrough__step-indicator">
-				Step {currentSlide + 1} of {WALKTHROUGH_SLIDES.length}
-			</p>
-		</div>
-	);
+  const handleNext = () => {
+    swiperRef.current?.slideNext();
+  };
+
+  const handleGetStarted = () => {
+    router.push("/form");
+  };
+
+  useEffect(() => {
+    const section = document.querySelector(".shape-animation.__walkthrough");
+    if (!section) return;
+
+    gsap.to(section, {
+      backgroundImage: `radial-gradient(${BACKGROUND_POSITIONS[currentSlide]}, #222737 0%, #0c0d10 100%)`,
+      duration: 0.8,
+      ease: "power2.inOut",
+    });
+  }, [currentSlide]);
+
+  const handleSlideChange = (swiper: SwiperClass) => {
+    setCurrentSlide?.(swiper.activeIndex);
+    setCurrentSlideState(swiper.activeIndex);
+  };
+
+  return (
+    <>
+      <section
+        className={`shape-animation __walkthrough __slide_${currentSlide + 1}`}
+      >
+        <div className="container">
+          <ShapeAnimation type="walkthrough" />
+        </div>
+
+        <div className="walkthrough">
+          <Swiper
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            modules={[Pagination]}
+            spaceBetween={30}
+            slidesPerView={1}
+            pagination={{
+              clickable: true,
+              bulletClass: "walkthrough__pagination-bullet",
+              bulletActiveClass: "walkthrough__pagination-bullet--active",
+            }}
+            onSlideChange={handleSlideChange}
+            className="walkthrough__swiper"
+          >
+            {WALKTHROUGH_SLIDES.map((slide, index) => (
+              <SwiperSlide key={slide.id} className="walkthrough__slide">
+                <SlideContent
+                  slide={slide}
+                  slideIndex={index}
+                  currentSlide={currentSlide}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+
+      <section className="walkthrough__navigation">
+        <div className="container">
+          <NavigationDots
+            total={WALKTHROUGH_SLIDES.length}
+            active={currentSlide}
+          />
+        </div>
+      </section>
+
+      <AppNavigation
+        title={isLastSlide ? "Get started" : "Continue"}
+        onClick={isLastSlide ? handleGetStarted : handleNext}
+        variant={isLastSlide ? "primary" : "secondary"}
+      />
+    </>
+  );
 };
 
 export default WalkthroughSlider;

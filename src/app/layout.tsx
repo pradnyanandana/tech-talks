@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { defaultMetadata } from "@/lib/metadata";
 import AppHeader from "@/components/AppHeader";
 import GSAPProvider from "@/components/GSAPProvider";
+import { NavigationProvider } from "@/context/NavigationContext";
 
 import "@/styles/globals.css";
 import "@/styles/components.css";
@@ -20,10 +21,12 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
       </head>
       <body>
         <GSAPProvider>
-          <div className="app">
-            <AppHeader />
-            <main className="main">{children}</main>
-          </div>
+          <NavigationProvider>
+            <div className="app">
+              <AppHeader />
+              <main className="main">{children}</main>
+            </div>
+          </NavigationProvider>
         </GSAPProvider>
       </body>
     </html>
