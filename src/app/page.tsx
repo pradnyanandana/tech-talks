@@ -1,37 +1,40 @@
 import AppNavigation from "@/components/layout/AppNavigation";
 import ShapeAnimation from "@/components/features/ShapeAnimation";
+import HomeContent from "@/components/features/HomeContent";
+import HomeTitle from "@/components/features/HomeTitle";
 
-const HOMEPAGE_TEXTS = [
-  "WA businesses feel confident about future growth",
-  "AI cant replace creativity",
-  "Sales measure true success",
-  "Human connection drives WA business",
-  "The primary barrier to digital transformation is financial investment",
-] as const;
-
+/**
+ * Homepage component
+ * Features:
+ * - Animated shape background
+ * - Dynamic content text
+ * - Hero title
+ * - Navigation to walkthrough
+ *
+ * Layout:
+ * 1. Shape animation section with floating text
+ * 2. Main content section with title
+ * 3. Bottom navigation
+ */
 const Home = () => {
   return (
     <>
+      {/* Shape animation section with floating text */}
       <section className="shape-animation __homepage">
         <div className="container">
           <ShapeAnimation />
-          {HOMEPAGE_TEXTS.map((text, index) => (
-            <p key={index} className="shape-animation-text">
-              {text}
-            </p>
-          ))}
+          <HomeContent />
         </div>
       </section>
 
+      {/* Main content section */}
       <section className="content">
         <div className="container">
-          <h1 className="typography__h2">
-            Compare your thoughts on <span>technology</span> with current
-            industry opinions.
-          </h1>
+          <HomeTitle />
         </div>
       </section>
 
+      {/* Navigation to walkthrough */}
       <AppNavigation path="/walkthrough" />
     </>
   );

@@ -3,15 +3,29 @@
 import { useRef } from "react";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 
+/**
+ * Props for Lottie animation components
+ * @interface LottieAnimationProps
+ */
 interface LottieAnimationProps {
+  /** Animation data object from Lottie JSON */
   animationData: object;
+  /** Optional className for container */
   className?: string;
+  /** Whether animation should play automatically */
   autoplay?: boolean;
+  /** Whether animation should loop */
   loop?: boolean;
+  /** Callback fired when animation completes */
   onComplete?: () => void;
+  /** Optional background image URL */
   backgroundImage?: string;
 }
 
+/**
+ * Internal wrapper component for Lottie player
+ * Handles direct interaction with lottie-react
+ */
 const LottieWrapper = ({
   lottieRef,
   ...props
@@ -28,6 +42,11 @@ const LottieWrapper = ({
   />
 );
 
+/**
+ * Main Lottie animation component
+ * Provides a wrapper for lottie-react with simplified props
+ * and consistent styling
+ */
 const LottieAnimation = ({
   animationData,
   className = "",
@@ -36,6 +55,7 @@ const LottieAnimation = ({
   onComplete,
   backgroundImage,
 }: LottieAnimationProps) => {
+  // Reference to control Lottie animation instance
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
   return (

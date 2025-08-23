@@ -1,62 +1,62 @@
-# 📱 TechTalks – Casual Chats with Tech & Trends
+# Tech Talks
 
-A modern web application built with Next.js, TypeScript, and advanced animations, featuring a multi-step form experience with smooth transitions and accessibility-first design.
+Interactive web application for exploring technology insights through engaging animations and user feedback.
 
-## 🚀 Features
+## Features
 
-- **Homepage** with Lottie animations and GSAP transitions
-- **Walkthrough Tutorial** using Swiper.js with elegant slide transitions
-- **Multi-step Form** with validation and reusable components
-- **Results Page** with user data summary and celebration animation
-- **Smooth Scrolling** powered by Lenis
-- **Responsive Design** optimized for mobile-first approach
-- **Accessibility** compliant with WCAG guidelines
-- **CSS Variables** for consistent theming
-- **TypeScript** for type safety
+- Animated homepage with dynamic content
+- Interactive walkthrough with slide transitions
+- Multi-step form with animations
+- Results visualization
+- Smooth page transitions and scrolling
 
-## 🛠 Tech Stack
+## Tech Stack
 
-- **Framework:** Next.js 14 with TypeScript
-- **Styling:** CSS Variables with custom component styles
-- **Animations:** GSAP + Lottie React
-- **Smooth Scrolling:** Lenis
-- **Slider:** Swiper.js
-- **State Management:** React hooks
+- Next.js 14 + TypeScript
+- GSAP for animations
+- Lenis for smooth scroll
+- Swiper for slides
 
-## 📦 Installation
+## Getting Started
 
-1. **Clone the repository:**
+```bash
+# Install dependencies
+npm install
 
-   ```bash
-   git clone <your-repo-url>
-   cd juicebox-assessment
-   ```
+# Run development server
+npm run dev
+```
 
-2. **Install dependencies:**
-
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Run the development server:**
-
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-4. **Open your browser:**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 🏗 Project Structure
+## Project Structure
 
 ```
-juicebox-assessment/
-├── components/          # Reusable React components
-│   ├── ui/             # Basic UI components (Button, TextInput, Layout)
+src/
+├── app/              # Next.js app router pages
+├── components/       # React components
+│   ├── features/    # Feature components
+│   ├── layout/      # Layout components
+│   ├── providers/   # Context providers
+│   └── ui/          # UI components
+├── hooks/           # Custom hooks
+├── lib/             # Utilities
+├── styles/          # Global styles
+└── types/           # TypeScript types
+```
+
+## Development
+
+- Uses CSS variables for theming
+- GSAP for animations and transitions
+- TypeScript for type safety
+- Responsive and mobile-first design
+
+## Scripts
+
+```bash
+npm run dev      # Development
+npm run build    # Production build
+npm run start    # Serve production
+```
 │   ├── LottieAnimation.tsx
 │   ├── WalkthroughSlider.tsx
 │   └── MultiStepForm.tsx

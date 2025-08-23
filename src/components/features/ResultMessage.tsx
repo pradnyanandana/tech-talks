@@ -1,18 +1,31 @@
 "use client";
 
-import { useApp } from "@/context/AppContext";
+import { useApp } from "@/hooks/useAppContext";
 import ShapeAnimation from "@/components/features/ShapeAnimation";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import AppNavigation from "@/components/layout/AppNavigation";
+import { useTransitionRouter } from "@/hooks/useTransitionRouter";
 
+/**
+ * Results message component
+ * Features:
+ * - Form data validation
+ * - Redirect to form if no data
+ * - Shape animation integration
+ * - Navigation controls
+ */
 const ResultMessage = () => {
-  const router = useRouter();
+  const { navigate } = useTransitionRouter();
   const { formData } = useApp();
+  const textRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * Validate form data on mount
+   * Redirects to form if firstName is missing
+   */
   useEffect(() => {
     if (!formData.firstName) {
-      router.push("/form");
+      navigate("/form");
     }
   }, [formData]);
 
@@ -22,7 +35,10 @@ const ResultMessage = () => {
         <div className="container">
           <ShapeAnimation type="result" />
 
-          <h2 className="multistep-form__title typography__regular">
+          <h2
+            className="multistep-form__title typography__regular"
+            ref={textRef}
+          >
             Thanks, {formData.firstName}! Now, it’s time to get a reality check.
             <br></br>
             <br></br> This will take 2-3 minutes. 
