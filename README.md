@@ -20,6 +20,9 @@ Interactive web application for exploring technology insights through engaging a
 ## Getting Started
 
 ```bash
+# Clone repository
+git clone https://github.com/pradnyanandana/tech-talks.git
+
 # Install dependencies
 npm install
 
@@ -37,18 +40,13 @@ src/
 │   ├── layout/      # Layout components
 │   ├── providers/   # Context providers
 │   └── ui/          # UI components
+├── context/         # React Context providers
 ├── hooks/           # Custom hooks
 ├── lib/             # Utilities
 ├── styles/          # Global styles
-└── types/           # TypeScript types
+├── types/           # TypeScript types
+└── public/          # Static assets
 ```
-
-## Development
-
-- Uses CSS variables for theming
-- GSAP for animations and transitions
-- TypeScript for type safety
-- Responsive and mobile-first design
 
 ## Scripts
 
@@ -57,15 +55,13 @@ npm run dev      # Development
 npm run build    # Production build
 npm run start    # Serve production
 ```
-│   ├── LottieAnimation.tsx
-│   ├── WalkthroughSlider.tsx
-│   └── MultiStepForm.tsx
-├── pages/              # Next.js pages
-├── styles/             # CSS files with variables and component styles
-├── lib/               # Utility functions and animations
-├── types/             # TypeScript type definitions
-└── public/            # Static assets
-```
+
+## Development
+
+- Uses CSS variables for theming
+- GSAP for animations and transitions
+- TypeScript for type safety
+- Responsive and mobile-first design
 
 ## 🎨 Key Components
 
@@ -96,7 +92,6 @@ npm run start    # Serve production
 ## 🎭 Animations
 
 - **GSAP** for smooth page transitions and element animations
-- **Lottie** for complex vector animations
 - **Lenis** for buttery smooth scrolling
 - **Swiper** for touch-friendly slide transitions
 
@@ -166,7 +161,6 @@ npm run start
 ## 📝 Notes
 
 - Form data is temporarily stored in sessionStorage for demo purposes
-- Lottie animations require JSON animation files (add your own in `/public/animations/`)
 - GSAP and Lenis provide smooth, performant animations
 - All components are built for reusability and maintainability
 
@@ -188,7 +182,7 @@ This completes the full project structure! The code includes:
 
 1. **Complete Next.js setup** with TypeScript
 2. **All required components** (Homepage, Walkthrough, Form, Results)
-3. **GSAP and Lottie integration** for animations
+3. **GSAP integration** for animations
 4. **Swiper.js implementation** for tutorial slides
 5. **Multi-step form** with validation
 6. **CSS variables** for consistent theming
@@ -201,9 +195,6 @@ To get started:
 1. Create a new Next.js project
 2. Copy all the code into the respective files
 3. Install the dependencies from package.json
-4. Add your Lottie animation JSON files to the `/public/animations/` folder
-5. Run `npm run dev` to start developing!
+4. Run `npm run dev` to start developing!
 
 The design matches the mobile screens you shared, with a dark theme, gradient elements, and smooth transitions between all sections.
-
-```
