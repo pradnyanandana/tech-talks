@@ -11,7 +11,7 @@ const HOMEPAGE_TEXTS = [
 
 const Home = () => {
   return (
-    <div className="home-page">
+    <>
       <section className="shape-animation __homepage">
         <div className="container">
           <ShapeAnimation />
@@ -33,7 +33,7 @@ const Home = () => {
       </section>
 
       <AppNavigation path="/walkthrough" />
-    </div>
+    </>
   );
 };
 

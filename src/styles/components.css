@@ -1,10 +1,4 @@
 /* Layout Components */
-.app {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
 .header {
     position: fixed;
     top: 0;
@@ -61,10 +55,6 @@
     align-items: center;
     justify-content: center;
     color: var(--color-text-primary);
-}
-
-.main {
-    flex: 1;
 }
 
 /* Typography */
@@ -393,8 +383,8 @@
 }
 
 /* Form Styles */
-.form-page .lottie-animation .lottie-animation__player,
-.results-page .lottie-animation .lottie-animation__player {
+.shape-animation.__form .lottie-animation .lottie-animation__player,
+.shape-animation.__result .lottie-animation .lottie-animation__player {
     width: 2.75rem;
     margin-bottom: 2.6666666667rem;
 }

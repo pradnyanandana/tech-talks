@@ -1,11 +1,7 @@
 import MultiStepForm from "@/components/features/MultiStepForm";
 
 const FormPage = () => {
-  return (
-    <div className="form-page">
-      <MultiStepForm />
-    </div>
-  );
+  return <MultiStepForm />;
 };
 
 export default FormPage;

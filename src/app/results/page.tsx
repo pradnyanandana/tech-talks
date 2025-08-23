@@ -3,11 +3,7 @@
 import ResultMessage from "@/components/features/ResultMessage";
 
 const ResultsPage = () => {
-  return (
-    <div className="results-page">
-      <ResultMessage />
-    </div>
-  );
+  return <ResultMessage />;
 };
 
 export default ResultsPage;
