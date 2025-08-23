@@ -336,7 +336,7 @@
 
 /* Homepage content */
 .content {
-    padding: 2rem 0;
+    padding: 2rem 0 10.3333333333rem 0;
     margin-top: -6.08333333333rem;
 }
 
@@ -346,6 +346,7 @@
     bottom: 0;
     width: 100%;
     padding: 1.6666666667rem 0;
+    background: var(--color-background);
 }
 
 /* Walkthrough Styles */
@@ -402,6 +403,11 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.walkthrough__title .char {
+    display: inline-block;
+    white-space: pre;
 }
 
 .walkthrough__description {

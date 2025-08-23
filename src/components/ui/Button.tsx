@@ -1,6 +1,23 @@
 import { ButtonProps } from "@/types";
 
-export default function Button({
+const generateButtonClasses = ({
+  variant,
+  size,
+  fullWidth,
+  disabled,
+  className,
+}: Pick<ButtonProps, 'variant' | 'size' | 'fullWidth' | 'disabled' | 'className'>) => {
+  return [
+    'button',
+    `button--${variant}`,
+    `button--${size}`,
+    fullWidth && 'button--full-width',
+    disabled && 'button--disabled',
+    className,
+  ].filter(Boolean).join(' ');
+};
+
+const Button = ({
   children,
   onClick,
   type = "button",
@@ -9,23 +26,14 @@ export default function Button({
   disabled = false,
   fullWidth = false,
   className = "",
-}: ButtonProps) {
-  const baseClasses = "button";
-  const variantClass = `button--${variant}`;
-  const sizeClass = `button--${size}`;
-  const fullWidthClass = fullWidth ? "button--full-width" : "";
-  const disabledClass = disabled ? "button--disabled" : "";
-
-  const classes = [
-    baseClasses,
-    variantClass,
-    sizeClass,
-    fullWidthClass,
-    disabledClass,
+}: ButtonProps) => {
+  const classes = generateButtonClasses({
+    variant,
+    size,
+    fullWidth,
+    disabled,
     className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  });
 
   return (
     <button
@@ -38,4 +46,6 @@ export default function Button({
       {children}
     </button>
   );
-}
+};
+
+export default Button;

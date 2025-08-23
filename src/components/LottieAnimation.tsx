@@ -12,25 +12,44 @@ interface LottieAnimationProps {
   backgroundImage?: string;
 }
 
-export default function LottieAnimation({
+const LottieWrapper = ({
+  lottieRef,
+  ...props
+}: {
+  lottieRef: React.RefObject<LottieRefCurrentProps | null>;
+} & Omit<LottieAnimationProps, "className">) => (
+  <Lottie
+    lottieRef={lottieRef}
+    animationData={props.animationData}
+    autoplay={props.autoplay}
+    loop={props.loop}
+    onComplete={props.onComplete ?? null}
+    className="lottie-animation__player"
+  />
+);
+
+const LottieAnimation = ({
   animationData,
   className = "",
   autoplay = true,
   loop = true,
   onComplete,
-}: LottieAnimationProps) {
+  backgroundImage,
+}: LottieAnimationProps) => {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
   return (
-    <div className={`lottie-animation ${className}`}>
-      <Lottie
+    <div className={`lottie-animation ${className}`.trim()}>
+      <LottieWrapper
         lottieRef={lottieRef}
         animationData={animationData}
         autoplay={autoplay}
         loop={loop}
-        onComplete={onComplete ? onComplete : null}
-        className="lottie-animation__player"
+        onComplete={onComplete}
+        backgroundImage={backgroundImage}
       />
     </div>
   );
-}
+};
+
+export default LottieAnimation;

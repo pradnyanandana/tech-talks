@@ -1,25 +1,33 @@
 import { Metadata } from "next";
 import { defaultMetadata } from "@/lib/metadata";
 import AppHeader from "@/components/AppHeader";
+import GSAPProvider from "@/components/GSAPProvider";
 
 import "@/styles/globals.css";
 import "@/styles/components.css";
 
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
 export const metadata: Metadata = defaultMetadata;
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body>
-        <div className="app">
-          <AppHeader />
-          <main className="main">{children}</main>
-        </div>
+        <GSAPProvider>
+          <div className="app">
+            <AppHeader />
+            <main className="main">{children}</main>
+          </div>
+        </GSAPProvider>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

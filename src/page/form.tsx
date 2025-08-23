@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import MultiStepForm from "@/components/MultiStepForm";
 import { FormData } from "@/types";
 
-export default function Form() {
+const Form = () => {
   const router = useRouter();
 
   const handleFormSubmit = (data: FormData) => {
@@ -18,4 +18,6 @@ export default function Form() {
       </div>
     </div>
   );
-}
+};
+
+export default Form;

@@ -1,6 +1,41 @@
 import { TextInputProps } from "@/types";
 
-export default function TextInput({
+const InputLabel = ({
+  id,
+  label,
+  required,
+}: {
+  id: string;
+  label: string;
+  required: boolean;
+}) => (
+  <label htmlFor={id} className="text-input__label">
+    {label}
+    {required && (
+      <span className="text-input__required" aria-label="required">
+        *
+      </span>
+    )}
+  </label>
+);
+
+const ErrorMessage = ({ id, error }: { id: string; error: string }) => (
+  <div id={`${id}-error`} className="text-input__error" role="alert">
+    {error}
+  </div>
+);
+
+const generateInputClasses = (error?: string, className = "") => {
+  return [
+    "text-input__field",
+    error && "text-input__field--error",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+};
+
+const TextInput = ({
   id,
   label,
   type = "text",
@@ -11,25 +46,12 @@ export default function TextInput({
   required = false,
   disabled = false,
   className = "",
-}: TextInputProps) {
-  const inputClasses = [
-    "text-input__field",
-    error ? "text-input__field--error" : "",
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+}: TextInputProps) => {
+  const inputClasses = generateInputClasses(error, className);
 
   return (
     <div className="text-input">
-      <label htmlFor={id} className="text-input__label">
-        {label}
-        {required && (
-          <span className="text-input__required" aria-label="required">
-            *
-          </span>
-        )}
-      </label>
+      <InputLabel id={id} label={label} required={required} />
 
       <input
         id={id}
@@ -44,11 +66,9 @@ export default function TextInput({
         aria-describedby={error ? `${id}-error` : undefined}
       />
 
-      {error && (
-        <div id={`${id}-error`} className="text-input__error" role="alert">
-          {error}
-        </div>
-      )}
+      {error && <ErrorMessage id={id} error={error} />}
     </div>
   );
-}
+};
+
+export default TextInput;

@@ -2,6 +2,8 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { IconArrowLeft, IconLogo, IconReset } from "@/lib/icons";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 
 const PATH_MAPPING = {
   "/walkthrough": "/",
@@ -13,6 +15,30 @@ const AppHeader = () => {
   const router = useRouter();
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const headerRef = useRef<HTMLElement>(null);
+  const wasScrolled = useRef(false);
+
+  useLayoutEffect(() => {
+    const updateHeader = () => {
+      if (!headerRef.current) return;
+
+      const isScrolled = window.scrollY > 0;
+      if (wasScrolled.current !== isScrolled) {
+        wasScrolled.current = isScrolled;
+        gsap.to(headerRef.current, {
+          backgroundColor: isScrolled ? "var(--color-background)" : "transparent",
+          boxShadow: isScrolled ? "0 2px 4px rgba(0,0,0,0.1)" : "none",
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      }
+    };
+
+    window.addEventListener("scroll", updateHeader);
+    updateHeader(); // Initial state
+
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, []);
 
   const handleBack = () => {
     const previousPath = PATH_MAPPING[pathname as keyof typeof PATH_MAPPING];
@@ -20,7 +46,7 @@ const AppHeader = () => {
   };
 
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <div className="container">
         <div className="header-content">
           {!isHomePage ? (
