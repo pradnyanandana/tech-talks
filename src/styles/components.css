@@ -352,7 +352,7 @@
     bottom: 0;
     width: 100%;
     padding: 1.6666666667rem 0;
-    background: var(--color-background);
+    /* background: var(--color-background); */
     z-index: var(--z-index-fixed);
 }
 
@@ -360,7 +360,7 @@
 .walkthrough__navigation {
     position: fixed;
     bottom: 8.3333333333rem;
-    background: var(--color-background);
+    /* background: var(--color-background); */
     width: 100%;
     padding: 1.1666666667rem 0;
     z-index: var(--z-index-fixed);

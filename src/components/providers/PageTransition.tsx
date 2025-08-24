@@ -17,14 +17,14 @@ const PageTransition = ({ children }: PageTransitionProps) => {
     
     if (isTransitioning) {
       gsap.to(contentRef.current, {
-        opacity: 0.25,
+        opacity: 0.5,
         duration: 0.4,
         ease: "power2.in",
       });
     } else {
       gsap.fromTo(
         contentRef.current,
-        { opacity: 0.25 },
+        { opacity: 0.5 },
         {
           opacity: 1,
           duration: 0.6,

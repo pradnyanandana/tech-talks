@@ -3,8 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useApp } from "@/hooks/useAppContext";
 import { IconArrowLeft, IconLogo, IconReset } from "@/lib/icons";
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
+import { useRef } from "react";
 import { useTransitionRouter } from "@/hooks/useTransitionRouter";
 
 /**
@@ -35,37 +34,8 @@ const AppHeader = () => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const headerRef = useRef<HTMLElement>(null);
-  const wasScrolled = useRef(false);
   const { currentSlide, setCurrentSlide, formStep, setFormStep, setFormData } =
     useApp();
-
-  /**
-   * Handle scroll-based header appearance
-   * Adds background and shadow when scrolled
-   */
-  useLayoutEffect(() => {
-    const updateHeader = () => {
-      if (!headerRef.current) return;
-
-      const isScrolled = window.scrollY > 0;
-      if (wasScrolled.current !== isScrolled) {
-        wasScrolled.current = isScrolled;
-        gsap.to(headerRef.current, {
-          backgroundColor: isScrolled
-            ? "var(--color-background)"
-            : "transparent",
-          boxShadow: isScrolled ? "0 2px 4px rgba(0,0,0,0.1)" : "none",
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    window.addEventListener("scroll", updateHeader);
-    updateHeader();
-
-    return () => window.removeEventListener("scroll", updateHeader);
-  }, []);
 
   /**
    * Navigate back based on current route:

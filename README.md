@@ -12,7 +12,7 @@ Interactive web application for exploring technology insights through engaging a
 
 ## Tech Stack
 
-- Next.js 14 + TypeScript
+- Next.js 15 + TypeScript
 - GSAP for animations
 - Lenis for smooth scroll
 - Swiper for slides
@@ -73,7 +73,7 @@ npm run start    # Serve production
 
 ### Button Component
 
-- Multiple variants (primary, secondary, ghost)
+- Multiple variants (primary, secondary, outlined)
 - Size variations (sm, md, lg)
 - Full accessibility support with focus states
 
@@ -87,7 +87,6 @@ npm run start    # Serve production
 
 - Progressive form completion
 - Real-time validation
-- Step indicator with progress bar
 
 ## 🎭 Animations
 
@@ -107,8 +106,8 @@ npm run start    # Serve production
 ## 📱 Responsive Design
 
 - Mobile-first approach
-- Flexible grid system using CSS Grid and Flexbox
-- Responsive typography with CSS clamp()
+- Body text-size based em units
+- Fluid spacing with rem units
 - Touch-friendly interface elements
 
 ## 🚦 Development Scripts
@@ -122,10 +121,10 @@ npm run lint         # Run ESLint
 
 ## 🎯 Performance Optimizations
 
-- Next.js automatic code splitting
-- Lazy loading of animations
-- Optimized asset delivery
-- Minimal runtime dependencies
+- Next.js App Router routing optimizations
+- GSAP performant animations
+- Static asset optimization
+- Minimal third-party dependencies
 
 ## 🔧 Configuration
 
@@ -196,5 +195,3 @@ To get started:
 2. Copy all the code into the respective files
 3. Install the dependencies from package.json
 4. Run `npm run dev` to start developing!
-
-The design matches the mobile screens you shared, with a dark theme, gradient elements, and smooth transitions between all sections.
