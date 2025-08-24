@@ -5,6 +5,7 @@ import GSAPProvider from "@/components/providers/GSAPProvider";
 import { AppProvider } from "@/context/AppContext";
 import ScrollProvider from "@/components/providers/ScrollProvider";
 import TransitionProvider from "@/components/providers/TransitionProvider";
+import PageTransition from "@/components/providers/PageTransition";
 
 import "@/styles/globals.css";
 import "@/styles/components.css";
@@ -50,7 +51,7 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
               {/* Route Transition Provider */}
               <TransitionProvider>
                 <AppHeader />
-                {children}
+                <PageTransition>{children}</PageTransition>
               </TransitionProvider>
             </ScrollProvider>
           </AppProvider>

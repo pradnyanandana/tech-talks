@@ -27,15 +27,14 @@ export const useTransitionRouter = () => {
     const currentIndex = ROUTE_ORDER.indexOf(window.location.pathname);
     const nextIndex = ROUTE_ORDER.indexOf(path);
     setDirection(nextIndex > currentIndex ? 'forward' : 'back');
-
-    // Start transition animation
     setIsTransitioning(true);
-    
-    // Delay navigation until animation completes
+
+    // Wait for GSAP animation to finish before navigating
+    // You can use a global event or callback from your GSAP animation if needed
     setTimeout(() => {
       router.push(path);
       setIsTransitioning(false);
-    }, 600); // Match animation duration
+    }, 600); // Match this to your GSAP animation duration
   };
 
   return { navigate };
